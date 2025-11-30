@@ -58,12 +58,6 @@ export const useGeminiLive = () => {
     setVolumeLevel(0);
   }, []);
 
-  const sendTextMessage = useCallback(async (text: string) => {
-      if (!sessionPromiseRef.current) return;
-      const session = await sessionPromiseRef.current;
-      session.send({ parts: [{ text }] }, true); // true = end of turn
-  }, []);
-
   const connect = useCallback(async (config: ConnectConfig) => {
     setError(null);
     setTranscripts([]); // Clear previous transcripts on new connection
@@ -219,7 +213,6 @@ export const useGeminiLive = () => {
     connected,
     connect,
     disconnect,
-    sendTextMessage,
     volumeLevel,
     transcripts,
     error
